@@ -1,23 +1,21 @@
 # RobotStudio
 
 #### 介绍
-Robot interactive development environments, debugging environments, teaching tools, simulation tools.
+
+RobotStudio是一个机器人集成开发环境，主要针对不同构型的工业机器人，提供包括机器人程序调试、示教及仿真等功能。
 
 #### 软件架构
-软件架构说明
 
+RobotStudio主要是基于VueJS架构构建，其目前主要分为两个重要的apps，分别是针对桌面环境的集成开发环境软件，以及针对示教平板的示教软件，两个软件均基于VueJS架构构建，并共用了一些组件。
+其中
+1. 桌面软件：采用Vue+Electron架构，实现一个桌面客户端，主要可部署于上位机软件，通过网络直接连接真实机器人或者机器人仿真环境，进行机器人软件的开发。
+2. 示教软件：采用Vue+QT的方案，在QT中嵌入了一个WebEngine，从而便于不属于各种嵌入式操作系统中（嵌入式系统大多数对Electron很难对Node及Electron环境进行支持），并通过QtWebChannel实现QT与JavaScript语言的交互。同时，为了方便示教器软件的开发，我们在桌面上提供了一个Electon+Vue的仿真开发调试器。
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
 
 #### 参与贡献
 
@@ -25,7 +23,6 @@ Robot interactive development environments, debugging environments, teaching too
 2.  新建 Feat_xxx 分支
 3.  提交代码
 4.  新建 Pull Request
-
 
 #### 特技
 
