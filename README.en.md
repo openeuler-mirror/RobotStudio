@@ -4,7 +4,6 @@
 Robot interactive development environments, debugging environments, teaching tools, simulation tools.
 
 #### Software Architecture
-Software architecture description
 
 #### Installation
 

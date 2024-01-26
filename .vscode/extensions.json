@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-close-tag",
+    "vue.vscode-typescript-vue-plugin",
+    "formulahendry.auto-rename-tag",
+    "vue.volar",
+    "jingwang37.element-plus-snippets"
+  ]
+}

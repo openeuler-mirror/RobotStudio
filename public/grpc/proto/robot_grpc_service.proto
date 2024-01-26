@@ -1,0 +1,110 @@
+syntax = "proto3";
+package rosc;
+import "google/protobuf/empty.proto";
+
+message PingResponse {
+  string reply = 1;
+  int32 code = 2;
+}
+
+message PowerOnResponse {
+  string reply = 1;
+  int32 code = 2;
+}
+
+message PowerOffResponse {
+  string reply = 1;
+  int32 code = 2;
+}
+
+message ClearErrorResponse {
+  string reply = 1;
+  int32 code = 2;
+}
+
+message EmergencyStopRequest {
+  string message = 1;
+  int32 code = 2;
+}
+message EmergencyStopResponse {
+  string reply = 1;
+  int32 code = 2;
+}
+
+message EmergencyRecoverRequest {
+  string message = 1;
+  int32 code = 2;
+}
+message EmergencyRecoverResponse {
+  string reply = 1;
+  int32 code = 2;
+}
+
+message TeachStreamStartGetJointsResponse {
+  string reply = 1;
+  int32 code = 2;
+  repeated double joints = 3;     // 关节信息
+  string servo_state = 4;         // 伺服状态信息
+  repeated double left_arm = 5;   // 左臂的笛卡尔坐标
+  repeated double right_arm = 6;  // 右臂的笛卡尔坐标
+  repeated double velocitys = 7;  // 实时速度
+  repeated double a = 8;          // 前端机器人模型显示运动的点位
+  repeated double b = 9;
+  repeated double c = 10;
+  repeated double d = 11;
+}
+
+message TeachStreamStopGetJointsResponse {
+  string reply = 1;
+  int32 code = 2;
+}
+
+message GetStreamExceptionRequest {
+  string message = 1;
+  int32 code = 2;
+}
+
+message GetStreamExceptionResponse {
+  string reply = 1;
+  int32 code = 2;
+  string status_code = 3;
+  int32 level = 4;
+  string time = 5;
+  string message = 6;
+}
+
+/**
+ * 为了保证接口设计的简约、清晰、和有效，请遵循一下设计原则。
+ * 1.命名规则请保持一致，大写字母开头的驼峰命名规则，避免使用缩写。
+ * 2.针对不同的设备及机型的专用接口，请以设备型号名作为前缀，例如openEulerRobotDeviceXxx/M124De
+ *   viceXxx，机型信息应该非常明确，以便于前端在调用接口时进行区分，应尽可能避免一个接
+ *   口仅适用于其中几个机型，而不适用于另外几个机型。
+ * 3.如果非特殊前缀开头的接口，应该能在所有进行上使用和调用
+ * 4.避免传递的信息字段，仅在某种情况下才能生效。如果有需要，建议采用不同的接口进行区分
+ *   实现。
+ * 5.每个接口请写注释文档
+ */
+service RobotGrpcService {
+  // 测试网络是否联通
+  rpc Ping(google.protobuf.Empty) returns (PingResponse);
+  // 机器人上电
+  rpc PowerOn(google.protobuf.Empty) returns (PowerOnResponse);
+  // 机器人下电
+  rpc PowerOff(google.protobuf.Empty) returns (PowerOffResponse);
+  // 机器人清错
+  rpc ClearError(google.protobuf.Empty) returns (ClearErrorResponse);
+  // 急停
+  rpc EmergencyStop(EmergencyStopRequest) returns (EmergencyStopResponse);
+  // 急停恢复
+  rpc EmergencyRecover(EmergencyRecoverRequest)
+      returns (EmergencyRecoverResponse);
+  // 示教过程中，开启获得关节数据流
+  rpc TeachStreamStartGetJoints(google.protobuf.Empty)
+      returns (stream TeachStreamStartGetJointsResponse);
+  // 示教过程中，停止获得关节数据流
+  rpc TeachStreamStopGetJoints(google.protobuf.Empty)
+      returns (TeachStreamStopGetJointsResponse);
+  // 异常处理
+  rpc GetStreamException(stream GetStreamExceptionRequest)
+      returns (stream GetStreamExceptionResponse);
+}

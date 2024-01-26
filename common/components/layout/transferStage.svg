@@ -1,0 +1,8 @@
+<svg width="82" height="82" xmlns="http://www.w3.org/2000/svg">
+ <g id="transferStage">
+  <rect id="components_1" stroke="#000" height="80" width="75" y="1" x="6" fill="#fff"/>
+  <circle id="components_2" r="40" cy="41" cx="41" stroke="#000" fill="#fff"/>
+  <circle id="components_3" r="30" cy="41" cx="41" stroke="#BBBBBB" stroke-width="2" fill="#fff"/>
+  <circle id="components_4" stroke="#000" r="4" cy="41" cx="41" fill="#AAAAAA"/>
+ </g>
+</svg>
